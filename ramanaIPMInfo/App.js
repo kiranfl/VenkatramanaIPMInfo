@@ -23,40 +23,68 @@ import HomeScreen from './components/HomeScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import { Provider, connect } from 'react-redux';
+import thunk from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './store/reducers/reducers';
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
 const Stack = createStackNavigator();
+
+function Apps() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Language">
+        <Stack.Screen name="Language" component={LanguageScreen} options=
+          {{
+            title: 'IPMInfo',
+            headerStyle: {
+              backgroundColor: '#FFC300',
+            },
+            headerTintColor: '#FFFFFF',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          {{
+            title: 'IPMInfo',
+            headerStyle: {
+              backgroundColor: '#FFC300',
+            },
+            headerTintColor: '#FFFFFF',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
 
 class App extends Component {
   render() {
     return (
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Language">
-          <Stack.Screen name="Language" component={LanguageScreen} options=
-            {{
-              title: 'IPMInfo',
-              headerStyle: {
-                backgroundColor: '#FFC300',
-              },
-              headerTintColor: '#FFFFFF',
-              headerTitleStyle: {
-                fontWeight: 'bold',
-              },
-            }}
-          />
-          <Stack.Screen name="Home" component={HomeScreen} options=
-            {{
-              title: 'IPMInfo',
-              headerStyle: {
-                backgroundColor: '#FFC300',
-              },
-              headerTintColor: '#FFFFFF',
-              headerTitleStyle: {
-                fontWeight: 'bold',
-              },
-            }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Apps />
     );
   }
 }
-export default App;
+const mapStateToProps = (state) => {
+  return (
+    {
+    }
+  )
+};
+const AppWithNavigationState = connect(mapStateToProps)(App);
+export default function NCAP() {
+  return (
+    <Provider store={store}>
+      <AppWithNavigationState />
+    </Provider>
+  );
+}
+

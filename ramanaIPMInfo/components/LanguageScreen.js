@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { connect } from "react-redux";
+import * as actionCreator from "../store/actions/actions";
 
 class LanguageScreen extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            selectEnglish: false,
-            selectSpanish: false,
-        }
         this.langSelect = this.langSelect.bind(this);
         this.navigateToNextScreen = this.navigateToNextScreen.bind(this);
     }
     langSelect = type => {
         if (type === 'English') {
-            this.setState({ selectEnglish: true, selectSpanish: false });
+            this.props.dispatch(actionCreator.saveLangType({ englishLangSelect: true, spanishLangSelect: false }));
         } else {
-            this.setState({ selectEnglish: false, selectSpanish: true });
+            this.props.dispatch(actionCreator.saveLangType({ englishLangSelect: false, spanishLangSelect: true }));
         }
     };
     navigateToNextScreen = () => {
-        if (this.state.selectEnglish || this.state.selectSpanish) {
+        if (this.props.langtype.englishLangSelect || this.props.langtype.spanishLangSelect) {
             this.props.navigation.navigate('Home');
         }
 
@@ -42,11 +40,11 @@ class LanguageScreen extends Component {
                     alignItems: 'flex-end',
                     marginTop: hp('5%')
                 }}>
-                    <TouchableOpacity style={this.state.selectEnglish ? (styles.langTypeSelect) : (styles.langType)} onPress={() => this.langSelect('English')}>
-                        <Text style={this.state.selectEnglish ? (styles.langTextSelect) : (styles.langText)}>English</Text>
+                    <TouchableOpacity style={this.props.langtype.englishLangSelect ? (styles.langTypeSelect) : (styles.langType)} onPress={() => this.langSelect('English')}>
+                        <Text style={this.props.langtype.englishLangSelect ? (styles.langTextSelect) : (styles.langText)}>English</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={this.state.selectSpanish ? (styles.langTypeSelect) : (styles.langType)} onPress={() => this.langSelect('Spanish')}>
-                        <Text style={this.state.selectSpanish ? (styles.langTextSelect) : (styles.langText)}>Spanish</Text>
+                    <TouchableOpacity style={this.props.langtype.spanishLangSelect ? (styles.langTypeSelect) : (styles.langType)} onPress={() => this.langSelect('Spanish')}>
+                        <Text style={this.props.langtype.spanishLangSelect ? (styles.langTextSelect) : (styles.langText)}>Spanish</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={{
@@ -66,8 +64,6 @@ class LanguageScreen extends Component {
         )
     }
 }
-export default LanguageScreen;
-
 const styles = StyleSheet.create({
     titleText: {
         fontWeight: 'bold', color: 'rgb(26, 25, 24)', fontSize: hp('5%')
@@ -96,3 +92,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontWeight: 'bold', fontSize: hp('2.8%'), color: 'rgb(255, 255, 255)'
     }
 })
+
+function mapStateToProps(state) {
+    return {
+        langtype: state.langType
+    };
+}
+export default connect(mapStateToProps)(LanguageScreen);
