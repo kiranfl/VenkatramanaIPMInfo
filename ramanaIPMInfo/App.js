@@ -47,9 +47,7 @@ function Apps() {
             },
           }}
         />
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
+        <Stack.Screen name="Home" component={HomeScreen} options=
           {{
             title: 'IPMInfo',
             headerStyle: {
