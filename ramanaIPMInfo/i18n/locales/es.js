@@ -1,3 +1,4 @@
 export default {
-    greeting: 'Hello Spanish!'
+    PICK_CROP_INTEREST: 'Pick Your Interested',
+    CROP: 'Crop',
 };

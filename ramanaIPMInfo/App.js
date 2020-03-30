@@ -18,7 +18,7 @@ import {
 
 import { createAppContainer, createBottomTabNavigator, NavigationActions, createDrawerNavigator } from 'react-navigation';
 import LanguageScreen from './components/LanguageScreen';
-import HomeScreen from './components/HomeScreen';
+import CropListsScreen from './components/CropListsScreen';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -47,7 +47,7 @@ function Apps() {
             },
           }}
         />
-        <Stack.Screen name="Home" component={HomeScreen} options=
+        <Stack.Screen name="Home" component={CropListsScreen} options=
           {{
             title: 'IPMInfo',
             headerStyle: {
