@@ -4,13 +4,7 @@ export const saveLangType = data => {
 }
 
 export const storeCropsList = data => {
-    let formatdata = [];
-    for (let i = 0; i < data.length; i++) {
-        let obj = data[i];
-        obj.selected = false;
-        formatdata.push(obj);
-    }
-    return { type: 'CROPS_LISTS', payload: formatdata };
+    return { type: 'CROPS_LISTS', payload: data };
 }
 
 export function getCrops() {
@@ -24,8 +18,13 @@ export function getCrops() {
         })
             .then(response => response.json())
             .then(responseJson => {
-                return dispatch(storeCropsList(responseJson));
-
+                let formatdata = [];
+                for (let i = 0; i < responseJson.length; i++) {
+                    let obj = responseJson[i];
+                    obj.selected = false;
+                    formatdata.push(obj);
+                }
+                return dispatch(storeCropsList(formatdata));
             })
             .catch(function (error) {
                 console.log(error);

@@ -16,17 +16,17 @@ import {
   StatusBar,
 } from 'react-native';
 
-import { createAppContainer, createBottomTabNavigator, NavigationActions, createDrawerNavigator } from 'react-navigation';
-import LanguageScreen from './components/LanguageScreen';
-import CropListsScreen from './components/CropListsScreen';
+
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
 import { Provider, connect } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './store/reducers/reducers';
+import LanguageScreen from './components/LanguageScreen';
+import CropListsScreen from './components/CropListsScreen';
+import CropsDetailsScreen from './components/CropsDetailsScreen';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 const Stack = createStackNavigator();
@@ -48,6 +48,18 @@ function Apps() {
           }}
         />
         <Stack.Screen name="Home" component={CropListsScreen} options=
+          {{
+            title: 'IPMInfo',
+            headerStyle: {
+              backgroundColor: '#FFC300',
+            },
+            headerTintColor: '#FFFFFF',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        />
+        <Stack.Screen name="CropsDetails" component={CropsDetailsScreen} options=
           {{
             title: 'IPMInfo',
             headerStyle: {
@@ -85,4 +97,5 @@ export default function NCAP() {
     </Provider>
   );
 }
+
 
