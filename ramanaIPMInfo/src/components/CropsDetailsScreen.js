@@ -1,17 +1,64 @@
-import React, { Component, useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, FlatList, Image } from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import I18n from '../i18n/i18n';
-import { getCrops, storeCropsList } from '../store/actions/actions';
-import * as actionCreator from "../store/actions/actions";
-import { connect, useSelector, useDispatch, } from "react-redux";
 
-function CropsDetailsScreen() {
+
+
+
+import * as React from 'react';
+import { View, Text, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import {
+    createDrawerNavigator,
+    DrawerContentScrollView,
+    DrawerItemList,
+    DrawerItem,
+} from '@react-navigation/drawer';
+
+function Feed({ navigation }) {
     return (
-        <View>
-            <Text>Crops Details Screen</Text>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>Feed Screen</Text>
+            <Button title="Open drawer" onPress={() => navigation.openDrawer()} />
+            <Button title="Toggle drawer" onPress={() => navigation.toggleDrawer()} />
         </View>
-    )
+    );
 }
 
-export default CropsDetailsScreen;
+function Notifications() {
+    return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>Notifications Screen</Text>
+        </View>
+    );
+}
+
+function CustomDrawerContent(props) {
+    return (
+        <DrawerContentScrollView {...props}>
+            <DrawerItemList {...props} />
+            <DrawerItem
+                label="Close drawer"
+                onPress={() => props.navigation.closeDrawer()}
+            />
+            <DrawerItem
+                label="Toggle drawer"
+                onPress={() => props.navigation.toggleDrawer()}
+            />
+        </DrawerContentScrollView>
+    );
+}
+
+const Drawer = createDrawerNavigator();
+
+function MyDrawer() {
+    return (
+        <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
+            <Drawer.Screen name="Feed" component={Feed} />
+            <Drawer.Screen name="Notifications" component={Notifications} />
+        </Drawer.Navigator>
+    );
+}
+
+export default function CropsDetailsScreen() {
+    return (
+        <MyDrawer />
+    );
+}
