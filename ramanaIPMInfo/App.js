@@ -23,55 +23,37 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Provider, connect } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
-import rootReducer from './store/reducers/reducers';
-import LanguageScreen from './components/LanguageScreen';
-import CropListsScreen from './components/CropListsScreen';
-import CropsDetailsScreen from './components/CropsDetailsScreen';
+import rootReducer from './src/store/reducers/reducers';
+import { Components } from './src/utils/declareComponents'
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 const Stack = createStackNavigator();
-
+const stackConfiguration = {
+  title: 'IPMInfo',
+  headerStyle: {
+    backgroundColor: '#FFC300',
+  },
+  headerTintColor: '#FFFFFF',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+  },
+  headerLeft: null,
+}
 function Apps() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Language">
-        <Stack.Screen name="Language" component={LanguageScreen} options=
-          {{
-            title: 'IPMInfo',
-            headerStyle: {
-              backgroundColor: '#FFC300',
-            },
-            headerTintColor: '#FFFFFF',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}
+      <Stack.Navigator initialRouteName="Splash">
+        <Stack.Screen name="Splash" component={Components.SplashScreen}
+          options={{ headerShown: false }}
         />
-        <Stack.Screen name="Home" component={CropListsScreen} options=
-          {{
-            title: 'IPMInfo',
-            headerStyle: {
-              backgroundColor: '#FFC300',
-            },
-            headerTintColor: '#FFFFFF',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-            headerLeft: null,
-          }}
+        <Stack.Screen name="Language" component={Components.LanguageScreen} options=
+          {stackConfiguration}
         />
-        <Stack.Screen name="CropsDetails" component={CropsDetailsScreen} options=
-          {{
-            title: 'IPMInfo',
-            headerStyle: {
-              backgroundColor: '#FFC300',
-            },
-            headerTintColor: '#FFFFFF',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-            headerLeft: null,
-          }}
+        <Stack.Screen name="Home" component={Components.CropListsScreen} options=
+          {stackConfiguration}
+        />
+        <Stack.Screen name="CropsDetails" component={Components.CropsDetailsScreen} options=
+          {stackConfiguration}
         />
       </Stack.Navigator>
     </NavigationContainer>
