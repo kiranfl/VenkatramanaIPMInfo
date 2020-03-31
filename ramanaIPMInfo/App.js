@@ -57,6 +57,7 @@ function Apps() {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
+            headerLeft: null,
           }}
         />
         <Stack.Screen name="CropsDetails" component={CropsDetailsScreen} options=
@@ -69,6 +70,7 @@ function Apps() {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
+            headerLeft: null,
           }}
         />
       </Stack.Navigator>
