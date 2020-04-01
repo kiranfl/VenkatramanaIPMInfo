@@ -53,7 +53,7 @@ function Apps() {
           {stackConfiguration}
         />
         <Stack.Screen name="CropsDetails" component={Components.CropsDetailsScreen} options=
-          {stackConfiguration}
+          {{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

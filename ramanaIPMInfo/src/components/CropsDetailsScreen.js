@@ -3,7 +3,7 @@
 
 
 import * as React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import {
     createDrawerNavigator,
@@ -11,38 +11,22 @@ import {
     DrawerItemList,
     DrawerItem,
 } from '@react-navigation/drawer';
-
-function Feed({ navigation }) {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Feed Screen</Text>
-            <Button title="Open drawer" onPress={() => navigation.openDrawer()} />
-            <Button title="Toggle drawer" onPress={() => navigation.toggleDrawer()} />
-        </View>
-    );
-}
-
-function Notifications() {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Notifications Screen</Text>
-        </View>
-    );
-}
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import FarmCrops from './FarmCrops';
+import Discover from './Discover';
 
 function CustomDrawerContent(props) {
     return (
-        <DrawerContentScrollView {...props}>
-            <DrawerItemList {...props} />
-            <DrawerItem
-                label="Close drawer"
-                onPress={() => props.navigation.closeDrawer()}
-            />
-            <DrawerItem
-                label="Toggle drawer"
-                onPress={() => props.navigation.toggleDrawer()}
-            />
-        </DrawerContentScrollView>
+        <View style={{ backgroundColor: 'rgb(255,255,255)', flex: 1 }}>
+            <DrawerContentScrollView {...props}>
+                <DrawerItem
+                    label="IPMInfo"
+                    style={{ backgroundColor: '#FFC300', fontWeight: 'bold', height: hp('8%') }}
+                    labelStyle={{ color: '#fff', fontSize: wp('5%'), marginLeft: wp('20%') }}
+                />
+                <DrawerItemList {...props} />
+            </DrawerContentScrollView>
+        </View>
     );
 }
 
@@ -51,14 +35,18 @@ const Drawer = createDrawerNavigator();
 function MyDrawer() {
     return (
         <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
-            <Drawer.Screen name="Feed" component={Feed} />
-            <Drawer.Screen name="Notifications" component={Notifications} />
+            <Drawer.Screen name="FarmCrops" component={FarmCrops} />
+            <Drawer.Screen name="Discover" component={Discover} />
         </Drawer.Navigator>
     );
 }
 
-export default function CropsDetailsScreen() {
+export default function CropsDetailsScreen(props) {
     return (
-        <MyDrawer />
+        <View style={{ flex: 1 }}>
+            <MyDrawer />
+        </View>
+
     );
 }
+
