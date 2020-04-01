@@ -24,7 +24,11 @@ function CustomDrawerContent(props) {
                     style={{ backgroundColor: '#FFC300', fontWeight: 'bold', height: hp('8%') }}
                     labelStyle={{ color: '#fff', fontSize: wp('5%'), marginLeft: wp('20%') }}
                 />
-                <DrawerItemList {...props} />
+                <DrawerItemList {...props}
+                    activeBackgroundColor={'rgb(220,220,220)'}
+                    activeTintColor={'rgb(105,105,105)'}
+                    labelStyle={{ fontSize: wp('4%') }}
+                />
             </DrawerContentScrollView>
         </View>
     );
@@ -35,7 +39,7 @@ const Drawer = createDrawerNavigator();
 function MyDrawer() {
     return (
         <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
-            <Drawer.Screen name="FarmCrops" component={FarmCrops} />
+            <Drawer.Screen name="Farm Crops" component={FarmCrops} />
             <Drawer.Screen name="Discover" component={Discover} />
         </Drawer.Navigator>
     );
