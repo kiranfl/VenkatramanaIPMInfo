@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
-export default function Header({ navigation, props }) {
+export default function Header(props) {
     return (
         <TouchableOpacity style={{ width: wp('100%'), height: hp('7%'), backgroundColor: '#FFC300', justifyContent: 'center' }} onPress={() => props.navigation.openDrawer()}>
             <TouchableOpacity>
