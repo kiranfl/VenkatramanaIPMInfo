@@ -55,6 +55,18 @@ function Apps() {
         <Stack.Screen name="CropsDetails" component={Components.CropsDetailsScreen} options=
           {{ headerShown: false }}
         />
+        <Stack.Screen name="SelectedCropsDetailsScreen" component={Components.SelectedCropsDetailsScreen} options=
+          {{
+            title: 'IPMInfo',
+            headerStyle: {
+              backgroundColor: '#FFC300',
+            },
+            headerTintColor: '#FFFFFF',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )

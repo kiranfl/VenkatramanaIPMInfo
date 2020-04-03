@@ -2,7 +2,9 @@ const initialState = {
     langType: {
         englishLangSelect: false,
         spanishLangSelect: false,
-        cropsList: []
+        cropsList: [],
+        selectedcropsList: {},
+        cropCategories: []
     },
 };
 
@@ -17,6 +19,16 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 cropsList: action.payload,
+            };
+        case 'SELECTED_CROP':
+            return {
+                ...state,
+                selectedcropsList: action.payload,
+            };
+        case 'CROPS_CATEGORIES':
+            return {
+                ...state,
+                cropCategories: action.payload,
             };
         default:
             return state;

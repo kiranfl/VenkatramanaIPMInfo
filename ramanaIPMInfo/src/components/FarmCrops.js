@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, Image, View, SafeAreaView, TouchableOpacity } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Header from './utils/Header';
+import * as actionCreator from "../store/actions/actions";
+import { useSelector, useDispatch, } from "react-redux";
 
 import Carousel from 'react-native-snap-carousel';
 
 
 
 function FarmCrops({ navigation }) {
-
+    const cropsList = useSelector(state => state.cropsList);
+    const selectedCrop = useSelector(state => state.selectedcropsList);
+    useEffect(() => {
+        dispatch(actionCreator.getCropCategories(selectedCrop.id));
+    }, []);
+    const dispatch = useDispatch();
     const _renderItem = ({ item, index }) => {
         return (
             <View style={{ flex: 1 }}>
@@ -25,43 +32,36 @@ function FarmCrops({ navigation }) {
         )
     }
     const handleSnapToItem = (index) => {
-        console.log("snapped to ", index)
+        dispatch(actionCreator.storeSelectedstore(cropsList[index]));
+        dispatch(actionCreator.getCropCategories(cropsList[index].id));
+    }
+    navigateToNextScreen = () => {
+        navigation.navigate('SelectedCropsDetailsScreen');
     }
     return (
         <SafeAreaView style={styles.container}>
             <Header navigation={navigation} />
             <View>
                 <View style={{ position: 'absolute', top: hp('3%'), left: wp('17%') }}>
-                    <Text style={{ color: '#565656', fontWeight: 'bold', fontSize: wp('6%') }}>Strawberry</Text>
+                    <Text style={{ color: '#565656', fontWeight: 'bold', fontSize: wp('6%') }}>{selectedCrop.name}</Text>
                 </View>
             </View>
             <Carousel
-                data={[
-                    {
-                        title: "Item 1",
-                        image: 'https://ipminfo.s3.amazonaws.com/1515002423483.JPG',
-                        selected: true
-                    },
-                    {
-                        title: "Item 2",
-                        image: 'https://ipminfo.s3.amazonaws.com/1530790083310.jpg',
-                        selected: false
-                    },
-                ]}
+                data={cropsList}
                 sliderWidth={300}
                 itemWidth={150}
                 renderItem={_renderItem}
                 onSnapToItem={(index) => handleSnapToItem(index)}
             />
             <View style={{ position: 'absolute', top: hp('45%'), left: wp('17%') }}>
-                <Text style={{ color: '#565656', fontSize: wp('5%') }}>Fragaria X Anananassa</Text>
-                <Text style={{ color: '#565656', fontSize: wp('3.5%'), marginBottom: hp('0.5%') }}>Red juicy, aromatic,sweet and tangy fruit</Text>
+                <Text style={{ color: '#565656', fontSize: wp('5%') }}>{selectedCrop.scientificName}</Text>
+                <Text style={{ color: '#565656', fontSize: wp('3.5%'), marginBottom: hp('0.5%') }}>{selectedCrop.description}</Text>
             </View>
             <View>
                 <Image
                     style={{ width: wp('100%'), height: hp('34%') }}
                     source={{
-                        uri: 'https://ipminfo.s3.amazonaws.com/1530790083310.jpg',
+                        uri: selectedCrop.image,
                     }}
                 />
             </View>
@@ -71,7 +71,7 @@ function FarmCrops({ navigation }) {
                 borderTopColor: 'rgb(211,211,211)',
                 borderTopWidth: wp('0.2%'),
             }}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigateToNextScreen()}>
                     <View style={{ width: wp('20%'), height: hp('10%'), borderWidth: wp('0.5%'), borderColor: 'rgb(211,211,211)' }}>
                         <Text style={{ justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontWeight: 'Bold', fontSize: hp('3%'), marginTop: hp('2%') }}>Next</Text>
                     </View>
