@@ -67,6 +67,9 @@ function Apps() {
             },
           }}
         />
+        <Stack.Screen name="DiseasesDetails" component={Components.DiseasesDetails} options=
+          {{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )

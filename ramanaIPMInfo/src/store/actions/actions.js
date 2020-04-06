@@ -1,4 +1,6 @@
-import { BASE_URL, CROPS, CATEGORIES } from '../../constants/constants';
+import { BASE_URL, CROPS, CATEGORIES, POSTS } from '../../constants/constants';
+import reactotron from 'reactotron-react-native';
+
 export const saveLangType = data => {
     return { type: 'LANG_TYPE', payload: data };
 }
@@ -25,6 +27,7 @@ export function getCrops() {
         })
             .then(response => response.json())
             .then(responseJson => {
+                //reactotron.log(responseJson);
                 let formatdata = [];
                 for (let i = 0; i < responseJson.length; i++) {
                     let obj = responseJson[i];
@@ -55,4 +58,21 @@ export function getCropCategories(cropId) {
                 console.log(error);
             });
     }
+}
+
+export function getCropsDetails(catPostsID) {
+    return fetch(BASE_URL.trim() + POSTS.trim() + '/' + catPostsID + '?type=plain', {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => response.json())
+        .then(responseJson => {
+            return responseJson;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }

@@ -6,12 +6,9 @@ import { AppRegistry } from 'react-native';
 import App from './App';
 import { name as appName } from './app.json';
 
-global.FormData = global.originalFormData
-    ? global.originalFormData
-    : global.FormData;
-XMLHttpRequest = GLOBAL.originalXMLHttpRequest
-    ? GLOBAL.originalXMLHttpRequest
-    : GLOBAL.XMLHttpRequest;
+if (__DEV__) {
+    import('./ReactotronConfig').then(() => console.log('Reactotron Configured'))
+}
 
 AppRegistry.registerComponent(appName, () => App);
 console.disableYellowBox = true;

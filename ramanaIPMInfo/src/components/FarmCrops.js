@@ -64,19 +64,20 @@ function FarmCrops({ navigation }) {
                         uri: selectedCrop.image,
                     }}
                 />
+                <View style={{
+                    justifyContent: 'flex-end',
+                    alignItems: 'flex-end',
+                    borderTopColor: 'rgb(211,211,211)',
+                    borderTopWidth: wp('0.2%'),
+                }}>
+                    <TouchableOpacity onPress={() => navigateToNextScreen()}>
+                        <View style={{ width: wp('20%'), height: hp('10%'), borderWidth: wp('0.5%'), borderColor: 'rgb(211,211,211)' }}>
+                            <Text style={{ justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontWeight: 'Bold', fontSize: hp('3%'), marginTop: hp('2%') }}>Next</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
             </View>
-            <View style={{
-                justifyContent: 'flex-end',
-                alignItems: 'flex-end',
-                borderTopColor: 'rgb(211,211,211)',
-                borderTopWidth: wp('0.2%'),
-            }}>
-                <TouchableOpacity onPress={() => navigateToNextScreen()}>
-                    <View style={{ width: wp('20%'), height: hp('10%'), borderWidth: wp('0.5%'), borderColor: 'rgb(211,211,211)' }}>
-                        <Text style={{ justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontWeight: 'Bold', fontSize: hp('3%'), marginTop: hp('2%') }}>Next</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
+
 
         </SafeAreaView >
     );
@@ -84,6 +85,7 @@ function FarmCrops({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#ffffff'
     },
 });
 

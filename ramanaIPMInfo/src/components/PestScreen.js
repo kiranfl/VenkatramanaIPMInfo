@@ -3,6 +3,7 @@ import { StyleSheet, Text, Image, View, SafeAreaView, TouchableOpacity, FlatList
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import * as actionCreator from "../store/actions/actions";
 import { useSelector, useDispatch, } from "react-redux";
+import { SimpleAnimation } from 'react-native-simple-animations';
 
 function PestScreen() {
     const getCategories = useSelector(state => state.cropCategories);
@@ -20,35 +21,38 @@ function PestScreen() {
                 <Text style={{ textAlign: 'center', color: '#565656', fontWeight: 'bold', fontSize: wp('6%') }}>{getCategories[1].name}</Text>
             </View>
             <View style={{ height: hp('72%') }}>
-                <FlatList
-                    data={getCategories[1]._subCategories}
-                    refreshControl={
-                        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-                    }
-                    renderItem={({ item, index }) => {
-                        return (
-                            <View key={index}>
-                                <TouchableOpacity style={{ width: wp('93%'), height: hp('15%'), backgroundColor: '#fff', marginLeft: wp('4%'), borderRadius: 5, marginTop: hp('1%') }}>
-                                    <View style={{ flexDirection: 'row' }}>
-                                        <View>
-                                            <Image
-                                                style={{ width: 120, height: hp('14.5%'), marginLeft: wp('0.7%'), marginTop: hp('0.3%') }}
-                                                source={{
-                                                    uri: item.image,
-                                                }}
-                                            />
-                                        </View>
-                                        <View style={{ justifyContent: 'center', marginLeft: wp('2%') }}>
-                                            <Text numberOfLines={1} style={{ textAlign: 'center', color: '#565656', fontSize: wp('4.5%') }}>{item.name}</Text>
-                                        </View>
+                <SimpleAnimation delay={2000} duration={4000} fade staticType='zoom' direction='up'>
+                    <FlatList
+                        data={getCategories[1]._subCategories}
+                        refreshControl={
+                            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                        }
+                        renderItem={({ item, index }) => {
+                            return (
+                                <View key={index}>
+                                    <TouchableOpacity style={{ width: wp('93%'), height: hp('15%'), backgroundColor: '#fff', marginLeft: wp('4%'), borderRadius: 5, marginTop: hp('1%') }}>
+                                        <View style={{ flexDirection: 'row' }}>
+                                            <View>
+                                                <Image
+                                                    style={{ width: 120, height: hp('14.5%'), marginLeft: wp('0.7%'), marginTop: hp('0.3%') }}
+                                                    source={{
+                                                        uri: item.image,
+                                                    }}
+                                                />
+                                            </View>
+                                            <View style={{ justifyContent: 'center', marginLeft: wp('2%') }}>
+                                                <Text numberOfLines={1} style={{ textAlign: 'center', color: '#565656', fontSize: wp('4.5%') }}>{item.name}</Text>
+                                            </View>
 
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                        )
-                    }
-                    }
-                />
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
+                            )
+                        }
+                        }
+                    />
+                </SimpleAnimation>
+
             </View>
         </View >
     )
