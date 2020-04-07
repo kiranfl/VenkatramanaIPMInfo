@@ -26,7 +26,7 @@ function DiseasesScreen({ navigation }) {
             let getResult = await actionCreator.getCropsDetails(_catposts[i]._id);
             getCropsDtls.push(getResult);
         }
-        navigation.navigate('DiseasesDetails', getCropsDtls);
+        navigation.navigate('DiseasesCropsDetails', getCropsDtls);
     }
     return (
         <View>

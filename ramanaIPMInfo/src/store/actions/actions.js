@@ -1,4 +1,4 @@
-import { BASE_URL, CROPS, CATEGORIES, POSTS } from '../../constants/constants';
+import { BASE_URL, CROPS, CATEGORIES, POSTS, MENU_VIDEOS } from '../../constants/constants';
 import reactotron from 'reactotron-react-native';
 
 export const saveLangType = data => {
@@ -15,6 +15,10 @@ export const storeSelectedstore = data => {
 export const storeCropCategories = data => {
     return { type: 'CROPS_CATEGORIES', payload: data };
 }
+export const storeCropsVideos = data => {
+    return { type: 'CROPS_VIDEOS', payload: data };
+}
+
 
 export function getCrops() {
     return dispatch => {
@@ -75,4 +79,23 @@ export function getCropsDetails(catPostsID) {
         .catch(function (error) {
             console.log(error);
         });
+}
+
+export function getCropsVideosList() {
+    return dispatch => {
+        return fetch(MENU_VIDEOS, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => response.json())
+            .then(responseJson => {
+                return dispatch(storeCropsVideos(responseJson));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 }

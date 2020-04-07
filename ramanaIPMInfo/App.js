@@ -67,10 +67,7 @@ function Apps() {
             },
           }}
         />
-        <Stack.Screen name="DiseasesDetails" component={Components.DiseasesDetails} options=
-          {{ headerShown: false }}
-        />
-        <Stack.Screen name="PestsDetailsScreen" component={Components.PestsDetailsScreen} options=
+        <Stack.Screen name="DiseasesCropsDetails" component={Components.DiseasesCropsDetails} options=
           {{ headerShown: false }}
         />
         <Stack.Screen name="ImagesCarousel" component={Components.ImagesCarousel} options=

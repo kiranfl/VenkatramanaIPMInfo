@@ -91,11 +91,11 @@ class DetailsScreen extends Component {
                                     renderItem={this._renderItem}
                                     onSnapToItem={(index) => this.setState({ activeSlide: index })}
                                 />
-                                {this.pagination}
-                                <TouchableOpacity onPress={this._closeIcon} style={{ position: 'relative', bottom: hp('30%'), left: wp('90%') }}>
+
+                                <TouchableOpacity onPress={this._closeIcon} style={{ position: 'relative', bottom: hp('21%'), left: wp('90%') }}>
                                     <Icon name="close" size={30} color="#fff" />
                                 </TouchableOpacity>
-                                <TouchableOpacity style={{ position: 'relative', bottom: hp('17%'), left: wp('85%') }} onPress={() => this._goToImages(this.props.cropsDetails)}>
+                                <TouchableOpacity style={{ position: 'relative', bottom: hp('7%'), left: wp('85%') }} onPress={() => this._goToImages(this.props.cropsDetails)}>
                                     <Icon name="image" size={30} color="red" />
                                 </TouchableOpacity>
                                 {this._renderContent(this.props.cropsDetails.content)}

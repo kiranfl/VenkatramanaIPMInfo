@@ -4,9 +4,9 @@ import LanguageScreen from '../components/LanguageScreen';
 import CropListsScreen from '../components/CropListsScreen';
 import CropsDetailsScreen from '../components/CropsDetailsScreen';
 import SelectedCropsDetailsScreen from '../components/SelectedCropsDetailsScreen';
-import DiseasesDetails from '../components/DiseasesDetails';
+import DiseasesCropsDetails from '../components/DiseasesCropsDetails';
 import ImagesCarousel from '../components/ImagesCarousel';
-import PestsDetailsScreen from '../components/PestsDetailsScreen';
+
 
 export const Components = Object.freeze({
     SplashScreen,
@@ -14,7 +14,6 @@ export const Components = Object.freeze({
     CropListsScreen,
     CropsDetailsScreen,
     SelectedCropsDetailsScreen,
-    DiseasesDetails,
+    DiseasesCropsDetails,
     ImagesCarousel,
-    PestsDetailsScreen,
 });

@@ -4,7 +4,8 @@ const initialState = {
         spanishLangSelect: false,
         cropsList: [],
         selectedcropsList: {},
-        cropCategories: []
+        cropCategories: [],
+        cropsVideos: {},
     },
 };
 
@@ -29,6 +30,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 cropCategories: action.payload,
+            };
+        case 'CROPS_VIDEOS':
+            return {
+                ...state,
+                cropsVideos: action.payload,
             };
         default:
             return state;

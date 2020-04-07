@@ -5,7 +5,7 @@ import * as actionCreator from "../store/actions/actions";
 import { useSelector, useDispatch, } from "react-redux";
 import { SimpleAnimation } from 'react-native-simple-animations';
 
-function PestScreen() {
+function PestScreen({ navigation }) {
     const getCategories = useSelector(state => state.cropCategories);
     const selectedCrop = useSelector(state => state.selectedcropsList);
     const dispatch = useDispatch();
@@ -16,8 +16,14 @@ function PestScreen() {
         setRefreshing(false);
     }, [refreshing]);
 
-    const detailsScreen = (item) => {
-        navigation.navigate('PestsDetailsScreen', item);
+    const detailsScreen = async (item) => {
+        const _catposts = item._catposts;
+        let getCropsDtls = [];
+        for (let i = 0; i < _catposts.length; i++) {
+            let getResult = await actionCreator.getCropsDetails(_catposts[i]._id);
+            getCropsDtls.push(getResult);
+        }
+        navigation.navigate('DiseasesCropsDetails', getCropsDtls);
     }
     return (
         <View>
