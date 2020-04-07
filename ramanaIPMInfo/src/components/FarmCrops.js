@@ -4,7 +4,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import Header from './utils/Header';
 import * as actionCreator from "../store/actions/actions";
 import { useSelector, useDispatch, } from "react-redux";
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Carousel from 'react-native-snap-carousel';
 
 
@@ -70,11 +70,15 @@ function FarmCrops({ navigation }) {
                     borderTopColor: 'rgb(211,211,211)',
                     borderTopWidth: wp('0.2%'),
                 }}>
-                    <TouchableOpacity onPress={() => navigateToNextScreen()}>
-                        <View style={{ width: wp('20%'), height: hp('10%'), borderWidth: wp('0.5%'), borderColor: 'rgb(211,211,211)' }}>
-                            <Text style={{ justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontWeight: 'Bold', fontSize: hp('3%'), marginTop: hp('2%') }}>Next</Text>
+                    <View>
+                        <View style={{ width: wp('20%'), height: hp('7%'), justifyContent: 'center' }}>
+                            <Image style={{ position: 'absolute', right: wp('85%'), width: 50, height: 30 }} source={require('../../assets/images/strawberry.jpg')} />
+                            <Text style={{ right: wp('35%'), width: wp('29%'), position: 'absolute', fontWeight: 'bold', fontSize: wp('4.5%'), color: '#565656' }}>More details</Text>
                         </View>
-                    </TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigateToNextScreen()} style={{ position: 'absolute', top: hp('1.5%'), left: wp('10%') }}>
+                            <Icon name="arrow-circle-right" size={30} color='#565656' />
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
 
