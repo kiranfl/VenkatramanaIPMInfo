@@ -15,6 +15,10 @@ function PestScreen() {
         dispatch(actionCreator.getCropCategories(selectedCrop.id));
         setRefreshing(false);
     }, [refreshing]);
+
+    const detailsScreen = (item) => {
+        navigation.navigate('PestsDetailsScreen', item);
+    }
     return (
         <View>
             <View style={{ justifyContent: 'center', width: wp('100%'), height: hp('5%'), marginTop: hp('2.5%') }}>
@@ -30,7 +34,7 @@ function PestScreen() {
                         renderItem={({ item, index }) => {
                             return (
                                 <View key={index}>
-                                    <TouchableOpacity style={{ width: wp('93%'), height: hp('15%'), backgroundColor: '#fff', marginLeft: wp('4%'), borderRadius: 5, marginTop: hp('1%') }}>
+                                    <TouchableOpacity onPress={() => detailsScreen(item)} style={{ width: wp('93%'), height: hp('15%'), backgroundColor: '#fff', marginLeft: wp('4%'), borderRadius: 5, marginTop: hp('1%') }}>
                                         <View style={{ flexDirection: 'row' }}>
                                             <View>
                                                 <Image

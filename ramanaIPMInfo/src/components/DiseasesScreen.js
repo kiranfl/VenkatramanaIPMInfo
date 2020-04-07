@@ -19,8 +19,14 @@ function DiseasesScreen({ navigation }) {
         setRefreshing(false);
     }, [refreshing]);
 
-    const detailsScreen = (item) => {
-        navigation.navigate('DiseasesDetails', item);
+    const detailsScreen = async (item) => {
+        const _catposts = item._catposts;
+        let getCropsDtls = [];
+        for (let i = 0; i < _catposts.length; i++) {
+            let getResult = await actionCreator.getCropsDetails(_catposts[i]._id);
+            getCropsDtls.push(getResult);
+        }
+        navigation.navigate('DiseasesDetails', getCropsDtls);
     }
     return (
         <View>
