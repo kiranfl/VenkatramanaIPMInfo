@@ -5,7 +5,7 @@ import Header from './utils/Header';
 import * as actionCreator from "../store/actions/actions";
 import { useSelector, useDispatch, } from "react-redux";
 import { Container, Content, Card, CardItem, Body, View, Text } from 'native-base';
-
+import { WebView } from 'react-native-webview'
 
 function VideosScreen({ navigation }) {
     const cropsVideos = useSelector(state => state.cropsVideos);
@@ -33,10 +33,10 @@ function VideosScreen({ navigation }) {
                                     <CardItem cardBody>
                                         <Body>
                                             <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => navigateToWebViewScreen(data)}>
-                                                <View>
-                                                    <Image style={{ flex: 1, width: wp('30%'), height: hp('20%') }} source={{ uri: 'https://ipminfo.s3.amazonaws.com/1530790083310.jpg' }} />
+                                                <View style={{ flex: 1, height: hp('18%') }}>
+                                                    <WebView source={{ uri: data.url }} />
                                                 </View>
-                                                <View style={{ justifyContent: 'center', marginLeft: wp('2%') }}>
+                                                <View style={{ width: wp('65%'), justifyContent: 'center' }}>
                                                     <Text numberOfLines={3} style={{
                                                         flexShrink: 1,
                                                         color: '#565656', fontSize: wp('3.4%'), justifyContent: 'center', textAlign: 'center', textAlignVertical: 'center'
