@@ -6,6 +6,7 @@ import CropsDetailsScreen from '../components/CropsDetailsScreen';
 import SelectedCropsDetailsScreen from '../components/SelectedCropsDetailsScreen';
 import DiseasesCropsDetails from '../components/DiseasesCropsDetails';
 import ImagesCarousel from '../components/ImagesCarousel';
+import WebViewScreen from '../components/utils/WebViewScreen';
 
 
 export const Components = Object.freeze({
@@ -16,4 +17,5 @@ export const Components = Object.freeze({
     SelectedCropsDetailsScreen,
     DiseasesCropsDetails,
     ImagesCarousel,
+    WebViewScreen,
 });

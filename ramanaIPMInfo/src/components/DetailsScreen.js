@@ -80,30 +80,33 @@ class DetailsScreen extends Component {
     render() {
         return (
             <SafeAreaView style={styles.container}>
-                {
-                    this.props.cropsDetails === undefined ? (null) :
-                        (
-                            <View>
-                                <Carousel
-                                    data={this.props.cropsDetails.images}
-                                    sliderWidth={450}
-                                    itemWidth={500}
-                                    renderItem={this._renderItem}
-                                    onSnapToItem={(index) => this.setState({ activeSlide: index })}
-                                />
+                <ScrollView>
+                    {
+                        this.props.cropsDetails === undefined ? (null) :
+                            (
+                                <View>
+                                    <Carousel
+                                        data={this.props.cropsDetails.images}
+                                        sliderWidth={450}
+                                        itemWidth={500}
+                                        renderItem={this._renderItem}
+                                        onSnapToItem={(index) => this.setState({ activeSlide: index })}
+                                    />
 
-                                <TouchableOpacity onPress={this._closeIcon} style={{ position: 'relative', bottom: hp('21%'), left: wp('90%') }}>
-                                    <Icon name="close" size={30} color="#fff" />
-                                </TouchableOpacity>
-                                <TouchableOpacity style={{ position: 'relative', bottom: hp('7%'), left: wp('85%') }} onPress={() => this._goToImages(this.props.cropsDetails)}>
-                                    <Icon name="image" size={30} color="red" />
-                                </TouchableOpacity>
-                                {this._renderContent(this.props.cropsDetails.content)}
-                            </View>
+                                    <TouchableOpacity onPress={this._closeIcon} style={{ position: 'relative', bottom: hp('25%'), left: wp('90%') }}>
+                                        <Icon name="close" size={30} color="#fff" />
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={{ position: 'relative', bottom: hp('7%'), left: wp('85%') }} onPress={() => this._goToImages(this.props.cropsDetails)}>
+                                        <Icon name="image" size={30} color="red" />
+                                    </TouchableOpacity>
+                                    {this._renderContent(this.props.cropsDetails.content)}
+                                </View>
 
 
-                        )
-                }
+                            )
+                    }
+                </ScrollView>
+
 
             </SafeAreaView>
         )

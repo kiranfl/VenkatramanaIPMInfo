@@ -73,6 +73,9 @@ function Apps() {
         <Stack.Screen name="ImagesCarousel" component={Components.ImagesCarousel} options=
           {{ headerShown: false }}
         />
+        <Stack.Screen name="WebViewScreen" component={Components.WebViewScreen} options=
+          {{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )

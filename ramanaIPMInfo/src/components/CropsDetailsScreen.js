@@ -14,6 +14,7 @@ import {
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import FarmCrops from './FarmCrops';
 import Discover from './Discover';
+import VideosScreen from './VideosScreen';
 
 function CustomDrawerContent(props) {
     return (
@@ -41,6 +42,8 @@ function MyDrawer() {
         <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
             <Drawer.Screen name="Farm Crops" component={FarmCrops} />
             <Drawer.Screen name="Discover" component={Discover} />
+            <Drawer.Screen name="Videos" component={VideosScreen} />
+
         </Drawer.Navigator>
     );
 }
