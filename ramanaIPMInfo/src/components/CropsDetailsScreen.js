@@ -15,6 +15,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import FarmCrops from './FarmCrops';
 import Discover from './Discover';
 import VideosScreen from './VideosScreen';
+import FeedBackScreen from './FeedBackScreen';
 
 function CustomDrawerContent(props) {
     return (
@@ -43,7 +44,7 @@ function MyDrawer() {
             <Drawer.Screen name="Farm Crops" component={FarmCrops} />
             <Drawer.Screen name="Discover" component={Discover} />
             <Drawer.Screen name="Videos" component={VideosScreen} />
-
+            <Drawer.Screen name="Feedback" component={FeedBackScreen} />
         </Drawer.Navigator>
     );
 }

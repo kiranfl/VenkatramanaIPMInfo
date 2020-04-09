@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Button, TouchableOpacity, ScrollView, StyleSheet, Image } from 'react-native';
+import { Button, TouchableOpacity, ScrollView, StyleSheet, Image, Linking, Alert } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Header from './utils/Header';
 import * as actionCreator from "../store/actions/actions";
@@ -15,8 +15,16 @@ function VideosScreen({ navigation }) {
         let result = await dispatch(actionCreator.getCropsVideosList());
         setVideos(result);
     }, []);
-    const navigateToWebViewScreen = (item) => {
-        navigation.navigate('WebViewScreen', item);
+    const navigateToWebViewScreen = async (item) => {
+        //navigation.navigate('WebViewScreen', item);
+        const supported = await Linking.canOpenURL(item.url);
+        if (supported) {
+            // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+            // by some browser in the mobile
+            await Linking.openURL(item.url);
+        } else {
+            Alert.alert(`Don't know how to open this URL: ${item.url}`);
+        }
     }
     return (
         <Container>
