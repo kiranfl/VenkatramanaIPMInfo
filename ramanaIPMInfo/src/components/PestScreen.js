@@ -31,7 +31,7 @@ function PestScreen({ navigation }) {
                 <Text style={{ textAlign: 'center', color: '#565656', fontWeight: 'bold', fontSize: wp('6%') }}>{getCategories[1].name}</Text>
             </View>
             <View style={{ height: hp('72%') }}>
-                <SimpleAnimation delay={2000} duration={4000} fade staticType='zoom' direction='up'>
+                <SimpleAnimation delay={500} duration={4000} fade staticType='zoom' direction='up'>
                     <FlatList
                         data={getCategories[1]._subCategories}
                         refreshControl={

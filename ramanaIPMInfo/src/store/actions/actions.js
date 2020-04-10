@@ -1,4 +1,4 @@
-import { BASE_URL, CROPS, CATEGORIES, POSTS, MENU_VIDEOS } from '../../constants/constants';
+import { BASE_URL, CROPS, CATEGORIES, POSTS, MENU_VIDEOS, FEEDBACKS } from '../../constants/constants';
 import reactotron from 'reactotron-react-native';
 
 export const saveLangType = data => {
@@ -98,4 +98,21 @@ export function getCropsVideosList() {
                 console.log(error);
             });
     }
+}
+
+export function postFeedbacks(feedback) {
+    return fetch(FEEDBACKS, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(feedback),
+    }).then(response => response.json())
+        .then(responseJson => {
+            return responseJson;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }

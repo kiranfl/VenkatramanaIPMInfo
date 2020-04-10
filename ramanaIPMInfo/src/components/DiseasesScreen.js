@@ -35,7 +35,7 @@ function DiseasesScreen({ navigation }) {
             </View>
 
             <View style={{ height: hp('72%') }}>
-                <SimpleAnimation delay={2000} duration={6000} fade staticType='zoom' direction='up'>
+                <SimpleAnimation delay={500} duration={6000} fade staticType='zoom' direction='up'>
                     <FlatList
                         data={getCategories[0]._subCategories}
                         refreshControl={
