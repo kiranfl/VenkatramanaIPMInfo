@@ -42,7 +42,6 @@ function MyDrawer() {
     return (
         <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
             <Drawer.Screen name="Farm Crops" component={FarmCrops} />
-            <Drawer.Screen name="Discover" component={Discover} />
             <Drawer.Screen name="Videos" component={VideosScreen} />
             <Drawer.Screen name="Feedback" component={FeedBackScreen} />
         </Drawer.Navigator>

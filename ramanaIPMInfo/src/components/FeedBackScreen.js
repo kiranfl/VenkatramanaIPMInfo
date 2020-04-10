@@ -8,6 +8,8 @@ import { Container, Content, Card, CardItem, Body, View, Text, Input, Item, Foot
 import { exp } from 'react-native-reanimated';
 import reactotron from 'reactotron-react-native';
 import { SimpleAnimation } from 'react-native-simple-animations';
+import Toast from 'react-native-simple-toast';
+
 
 function FeedBackScreen({ navigation }) {
     const [emojisImages, setEmojisImages] = useState([]);
@@ -78,21 +80,21 @@ function FeedBackScreen({ navigation }) {
         });
         if (email === '' || email === null) {
             isValid = false;
-            Alert.alert('Please Enter email');
+            Toast.showWithGravity('Please Enter email.', Toast.LONG, Toast.CENTER);
         }
         if (email) {
             if (!emailIsValid(email)) {
                 isValid = false;
-                Alert.alert('Please Enter Valid Email');
+                Toast.showWithGravity('Please Enter Valid Email.', Toast.LONG, Toast.CENTER);
             }
         }
         if (comments === '' || comments === null) {
             isValid = false;
-            Alert.alert('Please Enter comment');
+            Toast.showWithGravity('Please Enter comment.', Toast.LONG, Toast.CENTER);
         }
         if (emojiSelection.length === 0) {
             isValid = false;
-            Alert.alert('Please Select Emotions');
+            Toast.showWithGravity('Please Select Emotions.', Toast.LONG, Toast.CENTER);
         }
         if (isValid) {
             const feedbackObj = {
@@ -104,7 +106,7 @@ function FeedBackScreen({ navigation }) {
             setEmojisImages([...images]);
             setEmail('');
             setComments('');
-            Alert.alert('Thank you for your feedback');
+            Toast.showWithGravity('Thank you for your feedback.', Toast.LONG, Toast.CENTER);
         }
     }
     const changeEmail = (data) => {
