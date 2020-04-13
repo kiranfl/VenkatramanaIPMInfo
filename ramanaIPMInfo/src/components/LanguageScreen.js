@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import React, { Component, useEffect } from 'react';
+import { StyleSheet, View, Text, TouchableOpacity, AsyncStorage } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { connect, useSelector, useDispatch } from "react-redux";
 import * as actionCreator from "../store/actions/actions";
 import I18n from 'react-native-i18n';
-
+import reactotron from 'reactotron-react-native';
 
 function LanguageScreen({ navigation }) {
     const langtype = useSelector(state => state.langType);
     const dispatch = useDispatch();
 
-    const langSelect = type => {
+    const langSelect = async (type) => {
         if (type === 'English') {
             I18n.locale = 'en';
             dispatch(actionCreator.saveLangType({ englishLangSelect: true, spanishLangSelect: false }));
@@ -18,6 +18,10 @@ function LanguageScreen({ navigation }) {
             I18n.locale = 'es';
             dispatch(actionCreator.saveLangType({ englishLangSelect: false, spanishLangSelect: true }));
         }
+        await AsyncStorage.setItem('languageScreen', 'selected');
+        setTimeout(async () => {
+            reactotron.log('languageScreen', await AsyncStorage.getItem('languageScreen'))
+        }, 500);
     };
     navigateToNextScreen = () => {
         if (langtype.englishLangSelect || langtype.spanishLangSelect) {

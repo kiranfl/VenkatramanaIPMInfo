@@ -5,3 +5,4 @@ export const CATEGORIES = 'categories';
 export const POSTS = 'posts';
 export const MENU_VIDEOS = `${DEV_URL}/menu/videos`;
 export const FEEDBACKS = `${DEV_URL}/feedbacks`;
+export const STRAWBERRY_VEG_NEWS = `${DEV_URL}/menu/starwberry-veg-news`;

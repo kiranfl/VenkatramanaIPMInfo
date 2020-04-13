@@ -6,7 +6,7 @@ import { useSelector, useDispatch, } from "react-redux";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import DiseasesScreen from './DiseasesScreen';
 import PestScreen from './PestScreen';
-
+import I18n from '../i18n/i18n';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,7 +24,7 @@ function MyTabs() {
         }>
             <Tab.Screen name="Diseases" component={DiseasesScreen}
                 options={{
-                    tabBarLabel: 'Diseases',
+                    tabBarLabel: I18n.t('DISEASES'),
                     tabBarIcon: () => (
                         <Image style={{ width: wp('5%'), height: hp('3%'), marginTop: hp('2%') }} source={require('../../assets/images/diseas.png')} />
                     ),
@@ -32,7 +32,7 @@ function MyTabs() {
             />
             <Tab.Screen name="Pests" component={PestScreen}
                 options={{
-                    tabBarLabel: 'Pests',
+                    tabBarLabel: I18n.t('PESTS'),
                     tabBarIcon: () => (
                         <Image style={{ width: wp('5%'), height: hp('3%'), marginTop: hp('2%') }} source={require('../../assets/images/pests.png')} />
                     ),

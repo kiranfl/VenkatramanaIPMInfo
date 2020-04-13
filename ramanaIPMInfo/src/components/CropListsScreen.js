@@ -68,7 +68,7 @@ function CropListsScreen({ navigation }) {
             }}>
                 <TouchableOpacity onPress={() => navigateToNextScreen()}>
                     <View style={{ width: wp('20%'), height: hp('10%'), borderWidth: wp('0.5%'), borderColor: 'rgb(211,211,211)' }}>
-                        <Text style={{ justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontWeight: 'Bold', fontSize: hp('3%'), marginTop: hp('2%') }}>Next</Text>
+                        <Text style={{ justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontWeight: 'Bold', fontSize: hp('3%'), marginTop: hp('2%') }}>{I18n.t('NEXT')}</Text>
                     </View>
                 </TouchableOpacity>
             </View>

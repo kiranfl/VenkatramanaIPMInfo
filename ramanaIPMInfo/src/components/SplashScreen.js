@@ -1,11 +1,19 @@
 import React, { Component, useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, AsyncStorage } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import reactotron from 'reactotron-react-native';
 
 function SplashScreen({ navigation }) {
-    useEffect(() => {
-        setTimeout(() => {
-            navigation.navigate('Language');
+    useEffect(async () => {
+        setTimeout(async () => {
+            reactotron.log('languageScreen', await AsyncStorage.getItem('languageScreen'))
+            let result = await AsyncStorage.getItem('languageScreen');
+            if (result === 'selected') {
+                navigation.navigate('Home');
+            } else {
+                navigation.navigate('Language');
+            }
+
         }, 2000);
     }, [])
     return (

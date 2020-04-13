@@ -1,4 +1,4 @@
-import { BASE_URL, CROPS, CATEGORIES, POSTS, MENU_VIDEOS, FEEDBACKS } from '../../constants/constants';
+import { BASE_URL, CROPS, CATEGORIES, POSTS, MENU_VIDEOS, FEEDBACKS, STRAWBERRY_VEG_NEWS } from '../../constants/constants';
 import reactotron from 'reactotron-react-native';
 
 export const saveLangType = data => {
@@ -18,7 +18,9 @@ export const storeCropCategories = data => {
 export const storeCropsVideos = data => {
     return { type: 'CROPS_VIDEOS', payload: data };
 }
-
+export const storeStrawBerryVegNews = data => {
+    return { type: 'STRAWBERRY_VEG_NEWS', payload: data };
+}
 
 export function getCrops() {
     return dispatch => {
@@ -115,4 +117,23 @@ export function postFeedbacks(feedback) {
         .catch(function (error) {
             console.log(error);
         });
+}
+
+export function getStrawBerryVegNews() {
+    return dispatch => {
+        return fetch(STRAWBERRY_VEG_NEWS, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => response.json())
+            .then(responseJson => {
+                return dispatch(storeStrawBerryVegNews(responseJson));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 }

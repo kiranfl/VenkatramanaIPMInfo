@@ -16,13 +16,15 @@ import FarmCrops from './FarmCrops';
 import Discover from './Discover';
 import VideosScreen from './VideosScreen';
 import FeedBackScreen from './FeedBackScreen';
+import StrawberryAndVegetables from './StrawberryAndVegetables';
+import I18n from '../i18n/i18n';
 
 function CustomDrawerContent(props) {
     return (
         <View style={{ backgroundColor: 'rgb(255,255,255)', flex: 1 }}>
             <DrawerContentScrollView {...props}>
                 <DrawerItem
-                    label="IPMInfo"
+                    label={I18n.t('IPMINFO')}
                     style={{ backgroundColor: '#FFC300', fontWeight: 'bold', height: hp('8%') }}
                     labelStyle={{ color: '#fff', fontSize: wp('5%'), marginLeft: wp('20%') }}
                 />
@@ -41,9 +43,10 @@ const Drawer = createDrawerNavigator();
 function MyDrawer() {
     return (
         <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
-            <Drawer.Screen name="Farm Crops" component={FarmCrops} />
-            <Drawer.Screen name="Videos" component={VideosScreen} />
-            <Drawer.Screen name="Feedback" component={FeedBackScreen} />
+            <Drawer.Screen name={I18n.t('FARMCROPS')} component={FarmCrops} />
+            <Drawer.Screen name={I18n.t('VIDEOS')} component={VideosScreen} />
+            <Drawer.Screen name={I18n.t('FEEDBACK')} component={FeedBackScreen} />
+            <Drawer.Screen name={I18n.t('STRAWBERRIES_AND_VEGETABLES')} component={StrawberryAndVegetables} />
         </Drawer.Navigator>
     );
 }

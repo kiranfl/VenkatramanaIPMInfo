@@ -25,11 +25,12 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './src/store/reducers/reducers';
 import { Components } from './src/utils/declareComponents'
+import I18n from './src/i18n/i18n';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 const Stack = createStackNavigator();
 const stackConfiguration = {
-  title: 'IPMInfo',
+  title: I18n.t('IPMINFO'),
   headerStyle: {
     backgroundColor: '#FFC300',
   },

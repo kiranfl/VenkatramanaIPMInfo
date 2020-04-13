@@ -6,7 +6,7 @@ import * as actionCreator from "../store/actions/actions";
 import { useSelector, useDispatch, } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Carousel from 'react-native-snap-carousel';
-
+import I18n from '../i18n/i18n';
 
 
 function FarmCrops({ navigation }) {
@@ -73,7 +73,7 @@ function FarmCrops({ navigation }) {
                     <View>
                         <View style={{ width: wp('20%'), height: hp('7%'), justifyContent: 'center' }}>
                             <Image style={{ position: 'absolute', right: wp('85%'), width: 50, height: 30 }} source={require('../../assets/images/strawberry.jpg')} />
-                            <Text style={{ right: wp('35%'), width: wp('29%'), position: 'absolute', fontWeight: 'bold', fontSize: wp('4.5%'), color: '#565656' }}>More details</Text>
+                            <Text style={{ right: wp('35%'), width: wp('29%'), position: 'absolute', fontWeight: 'bold', fontSize: wp('4.5%'), color: '#565656' }}>{I18n.t('MORE_DETAILS')}</Text>
                         </View>
                         <TouchableOpacity onPress={() => navigateToNextScreen()} style={{ position: 'absolute', top: hp('1.5%'), left: wp('10%') }}>
                             <Icon name="arrow-circle-right" size={30} color='#565656' />
