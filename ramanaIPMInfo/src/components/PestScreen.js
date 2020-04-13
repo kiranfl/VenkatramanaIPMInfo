@@ -4,16 +4,21 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import * as actionCreator from "../store/actions/actions";
 import { useSelector, useDispatch, } from "react-redux";
 import { SimpleAnimation } from 'react-native-simple-animations';
+import Loader from './utils/Loader';
 
 function PestScreen({ navigation }) {
     const getCategories = useSelector(state => state.cropCategories);
     const selectedCrop = useSelector(state => state.selectedcropsList);
     const dispatch = useDispatch();
     const [refreshing, setRefreshing] = React.useState(false);
+    const [loader, setLoader] = useState(false);
+
     const onRefresh = React.useCallback(async () => {
         setRefreshing(true);
+        setLoader(true);
         dispatch(actionCreator.getCropCategories(selectedCrop.id));
         setRefreshing(false);
+        setLoader(false);
     }, [refreshing]);
 
     const detailsScreen = async (item) => {
@@ -25,13 +30,22 @@ function PestScreen({ navigation }) {
         }
         navigation.navigate('DiseasesCropsDetails', getCropsDtls);
     }
+    useEffect(() => {
+        setLoader(true);
+        setTimeout(() => {
+            setLoader(false);
+        }, 1000);
+    }, []);
     return (
         <View>
             <View style={{ justifyContent: 'center', width: wp('100%'), height: hp('5%'), marginTop: hp('2.5%') }}>
                 <Text style={{ textAlign: 'center', color: '#565656', fontWeight: 'bold', fontSize: wp('6%') }}>{getCategories[1].name}</Text>
             </View>
+            {
+                loader ? (<Loader />) : (null)
+            }
             <View style={{ height: hp('72%') }}>
-                <SimpleAnimation delay={500} duration={4000} fade staticType='zoom' direction='up'>
+                <SimpleAnimation animateOnUpdate={true} delay={500} duration={4000} fade staticType='zoom' direction='up'>
                     <FlatList
                         data={getCategories[1]._subCategories}
                         refreshControl={

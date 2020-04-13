@@ -4,19 +4,21 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import * as actionCreator from "../store/actions/actions";
 import { useSelector, useDispatch, } from "react-redux";
 import { SimpleAnimation } from 'react-native-simple-animations';
-
+import Loader from './utils/Loader';
 
 function DiseasesScreen({ navigation }) {
     const getCategories = useSelector(state => state.cropCategories);
     const selectedCrop = useSelector(state => state.selectedcropsList);
     const dispatch = useDispatch();
-    const [refreshing, setRefreshing] = React.useState(false);
-
+    const [refreshing, setRefreshing] = useState(false);
+    const [loader, setLoader] = useState(false);
 
     const onRefresh = React.useCallback(async () => {
         setRefreshing(true);
+        setLoader(true);
         dispatch(actionCreator.getCropCategories(selectedCrop.id));
         setRefreshing(false);
+        setLoader(false);
     }, [refreshing]);
 
     const detailsScreen = async (item) => {
@@ -28,14 +30,23 @@ function DiseasesScreen({ navigation }) {
         }
         navigation.navigate('DiseasesCropsDetails', getCropsDtls);
     }
+    useEffect(() => {
+        setLoader(true);
+        setTimeout(() => {
+            setLoader(false);
+        }, 1000);
+    }, []);
     return (
         <View>
             <View style={{ justifyContent: 'center', width: wp('100%'), height: hp('5%'), marginTop: hp('2.5%') }}>
                 <Text style={{ textAlign: 'center', color: '#565656', fontWeight: 'bold', fontSize: wp('6%') }}>{getCategories[0].name}</Text>
             </View>
+            {
+                loader ? (<Loader />) : (null)
+            }
 
             <View style={{ height: hp('72%') }}>
-                <SimpleAnimation delay={500} duration={6000} fade staticType='zoom' direction='up'>
+                <SimpleAnimation animateOnUpdate={true} delay={500} duration={6000} fade staticType='zoom' direction='up'>
                     <FlatList
                         data={getCategories[0]._subCategories}
                         refreshControl={
@@ -68,7 +79,6 @@ function DiseasesScreen({ navigation }) {
                 </SimpleAnimation>
 
             </View>
-
 
         </View >
     )

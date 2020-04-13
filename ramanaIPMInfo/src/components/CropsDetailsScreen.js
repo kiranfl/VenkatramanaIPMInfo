@@ -18,6 +18,7 @@ import VideosScreen from './VideosScreen';
 import FeedBackScreen from './FeedBackScreen';
 import StrawberryAndVegetables from './StrawberryAndVegetables';
 import I18n from '../i18n/i18n';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 function CustomDrawerContent(props) {
     return (
@@ -40,13 +41,36 @@ function CustomDrawerContent(props) {
 
 const Drawer = createDrawerNavigator();
 
+function FARMCROPSLABEL() {
+    return I18n.t('FARMCROPS');
+}
+
 function MyDrawer() {
     return (
         <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
-            <Drawer.Screen name={I18n.t('FARMCROPS')} component={FarmCrops} />
-            <Drawer.Screen name={I18n.t('VIDEOS')} component={VideosScreen} />
-            <Drawer.Screen name={I18n.t('FEEDBACK')} component={FeedBackScreen} />
-            <Drawer.Screen name={I18n.t('STRAWBERRIES_AND_VEGETABLES')} component={StrawberryAndVegetables} />
+            <Drawer.Screen name={FARMCROPSLABEL()} component={FarmCrops}
+                options={{
+                    drawerIcon: config => <Icon
+                        size={23}
+                        name={'tree'}></Icon>
+                }}
+            />
+            <Drawer.Screen name={I18n.t('VIDEOS')} component={VideosScreen}
+                options={{
+                    drawerIcon: config => <Icon
+                        size={23}
+                        name={'video-camera'}></Icon>
+                }}
+            />
+            <Drawer.Screen name={I18n.t('FEEDBACK')} component={FeedBackScreen}
+                options={{
+                    drawerIcon: config => <Icon
+                        size={23}
+                        name={'comment'}></Icon>
+                }}
+            />
+            <Drawer.Screen name={I18n.t('STRAWBERRIES_AND_VEGETABLES')} component={StrawberryAndVegetables}
+            />
         </Drawer.Navigator>
     );
 }
