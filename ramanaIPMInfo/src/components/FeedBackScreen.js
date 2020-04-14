@@ -9,12 +9,13 @@ import { exp } from 'react-native-reanimated';
 import reactotron from 'reactotron-react-native';
 import { SimpleAnimation } from 'react-native-simple-animations';
 import Toast from 'react-native-simple-toast';
-
+import Loader from './utils/Loader';
 
 function FeedBackScreen({ navigation }) {
     const [emojisImages, setEmojisImages] = useState([]);
     const [email, setEmail] = useState('');
     const [comments, setComments] = useState('');
+    const [loader, setLoader] = useState(false);
     const images = [
         { id: 1, title: 'Terrible', selected: false, 'displayImage': require('../../assets/images/surprised.png') },
         { id: 2, title: 'Bad', selected: false, 'displayImage': require('../../assets/images/worried.png') },
@@ -75,26 +76,31 @@ function FeedBackScreen({ navigation }) {
     }
     const submitFeedback = async () => {
         let isValid = true;
+        setLoader(true);
         const emojiSelection = emojisImages.filter((data) => {
             return data.selected === true;
         });
         if (email === '' || email === null) {
             isValid = false;
             Toast.showWithGravity('Please Enter email.', Toast.LONG, Toast.CENTER);
+            setLoader(false);
         }
         if (email) {
             if (!emailIsValid(email)) {
                 isValid = false;
                 Toast.showWithGravity('Please Enter Valid Email.', Toast.LONG, Toast.CENTER);
+                setLoader(false);
             }
         }
         if (comments === '' || comments === null) {
             isValid = false;
             Toast.showWithGravity('Please Enter comment.', Toast.LONG, Toast.CENTER);
+            setLoader(false);
         }
         if (emojiSelection.length === 0) {
             isValid = false;
             Toast.showWithGravity('Please Select Emotions.', Toast.LONG, Toast.CENTER);
+            setLoader(false);
         }
         if (isValid) {
             const feedbackObj = {
@@ -106,6 +112,7 @@ function FeedBackScreen({ navigation }) {
             setEmojisImages([...images]);
             setEmail('');
             setComments('');
+            setLoader(false);
             Toast.showWithGravity('Thank you for your feedback.', Toast.LONG, Toast.CENTER);
         }
     }
@@ -125,6 +132,9 @@ function FeedBackScreen({ navigation }) {
                 <Text style={{ justifyContent: 'center', textAlign: 'center', color: '#565656', fontWeight: 'bold', fontSize: wp('6%') }}>Give your feedback</Text>
             </View>
             <Content>
+
+
+
                 <View style={{ marginTop: hp('8%') }}>
                     <Item>
                         <Input placeholder='Enter your email' value={email} onChangeText={changeEmail} />
@@ -132,6 +142,10 @@ function FeedBackScreen({ navigation }) {
                     <Item>
                         <Input placeholder='Comments' value={comments} onChangeText={changeComments} />
                     </Item>
+                    {
+                        loader ? (<Loader />) : (null)
+                    }
+
                 </View>
                 <Item>
                     <View style={{ flex: 1, flexDirection: 'row', marginTop: hp('10%'), justifyContent: 'space-between' }}>
@@ -155,7 +169,6 @@ function FeedBackScreen({ navigation }) {
                             })
                         }
                     </View>
-
                 </Item>
                 <Item>
                     <View style={{ flex: 1 }}>

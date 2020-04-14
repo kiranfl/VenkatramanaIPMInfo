@@ -5,19 +5,25 @@ import Header from './utils/Header';
 import * as actionCreator from "../store/actions/actions";
 import { useSelector, useDispatch, } from "react-redux";
 import { Container, Content, Card, CardItem, Body, View, Text } from 'native-base';
-import { WebView } from 'react-native-webview'
+import { WebView } from 'react-native-webview';
+import Loader from './utils/Loader';
 
 function VideosScreen({ navigation }) {
     const cropsVideos = useSelector(state => state.cropsVideos);
     const [refreshing, setRefreshing] = useState(false);
     const [getVideos, setVideos] = useState({});
+    const [loader, setLoader] = useState(false);
+
     const dispatch = useDispatch();
     useEffect(async () => {
+        setLoader(true);
         let result = await dispatch(actionCreator.getCropsVideosList());
+        setLoader(false);
         setVideos(result);
     }, []);
     const navigateToWebViewScreen = async (item) => {
         //navigation.navigate('WebViewScreen', item);
+        setLoader(true);
         const supported = await Linking.canOpenURL(item.url);
         if (supported) {
             // Opening the link with some app, if the URL scheme is "http" the web link should be opened
@@ -26,12 +32,15 @@ function VideosScreen({ navigation }) {
         } else {
             Alert.alert(`Don't know how to open this URL: ${item.url}`);
         }
+        setLoader(false);
     }
     const onRefresh = useCallback(async () => {
         setRefreshing(true);
+        setLoader(true);
         let result = await dispatch(actionCreator.getCropsVideosList());
         setVideos(result);
         setRefreshing(false);
+        setLoader(false);
     }, [refreshing]);
     return (
         <Container>
@@ -40,6 +49,10 @@ function VideosScreen({ navigation }) {
                 <Text style={{ justifyContent: 'center', textAlign: 'center', color: '#565656', fontWeight: 'bold', fontSize: wp('6%') }}>Videos</Text>
             </View>
             <Content>
+                {
+                    loader ? (<Loader />) : (null)
+                }
+
                 <View style={{ height: hp('77%') }}>
                     {
                         getVideos.payload === undefined ? (null) : (
