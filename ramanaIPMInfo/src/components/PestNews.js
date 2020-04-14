@@ -9,14 +9,14 @@ import { Container, Content, Card, CardItem, Body } from 'native-base';
 import Loader from './utils/Loader';
 import I18n from '../i18n/i18n';
 
-function StrawberryAndVegetables({ navigation }) {
+function PestNews({ navigation }) {
     const [refreshing, setRefreshing] = useState(false);
-    const strawBerryVegNews = useSelector(state => state.strawBerryVegNews);
+    const pestNews = useSelector(state => state.pestNews);
     const dispatch = useDispatch();
     const [loader, setLoader] = useState(false);
     useEffect(() => {
         setLoader(true);
-        dispatch(actionCreator.getStrawBerryVegNews());
+        dispatch(actionCreator.getPestsNews());
         setTimeout(() => {
             setLoader(false);
         }, 2000);
@@ -25,7 +25,7 @@ function StrawberryAndVegetables({ navigation }) {
     const onRefresh = useCallback(async () => {
         setRefreshing(true);
         setLoader(true);
-        await dispatch(actionCreator.getStrawBerryVegNews());
+        await dispatch(actionCreator.getPestsNews());
         setRefreshing(false);
         setLoader(false);
     }, [refreshing]);
@@ -38,7 +38,7 @@ function StrawberryAndVegetables({ navigation }) {
         <Container>
             <Header navigation={navigation} />
             <View style={{ justifyContent: 'center', marginTop: hp('2.5%') }}>
-                <Text style={{ justifyContent: 'center', textAlign: 'center', color: '#565656', fontWeight: 'bold', fontSize: wp('6%') }}>{I18n.t('STRAWBERRIES_AND_VEGETABLES')}</Text>
+                <Text style={{ justifyContent: 'center', textAlign: 'center', color: '#565656', fontWeight: 'bold', fontSize: wp('6%') }}>{I18n.t('PESTNEWS')}</Text>
             </View>
             <Content>
                 {
@@ -47,9 +47,9 @@ function StrawberryAndVegetables({ navigation }) {
                 <View style={{ height: hp('78%') }}>
                     <SimpleAnimation movementType='spring' animateOnUpdate={true} delay={500} duration={6000} fade staticType='zoom' direction='left'>
                         {
-                            strawBerryVegNews === undefined ? (null) : (
+                            pestNews === undefined ? (null) : (
                                 <FlatList
-                                    data={strawBerryVegNews.value}
+                                    data={pestNews.value}
                                     refreshControl={
                                         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                                     }
@@ -82,4 +82,4 @@ function StrawberryAndVegetables({ navigation }) {
     )
 }
 
-export default StrawberryAndVegetables;
+export default PestNews;

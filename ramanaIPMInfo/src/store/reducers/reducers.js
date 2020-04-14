@@ -7,6 +7,7 @@ const initialState = {
         cropCategories: [],
         cropsVideos: {},
         strawBerryVegNews: {},
+        pestNews: {},
     },
 };
 
@@ -41,6 +42,16 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 strawBerryVegNews: action.payload,
+            };
+        case 'STRAWBERRY_VEG_NEWS':
+            return {
+                ...state,
+                strawBerryVegNews: action.payload,
+            };
+        case 'PEST_NEWS':
+            return {
+                ...state,
+                pestNews: action.payload,
             };
 
         default:

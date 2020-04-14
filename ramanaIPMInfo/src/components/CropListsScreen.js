@@ -16,9 +16,6 @@ function CropListsScreen({ navigation }) {
         let getCrops = [...cropsList];
         getCrops[index].selected = !cropsList[index].selected;
         dispatch(actionCreator.storeCropsList(getCrops));
-        /*let getSelectedCrop = cropsList.filter((data) => {
-            return data.selected === true;
-        });*/
         dispatch(actionCreator.storeSelectedstore(getCrops[0]));
     }
     navigateToNextScreen = () => {

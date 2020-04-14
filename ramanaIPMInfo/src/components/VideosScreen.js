@@ -7,6 +7,7 @@ import { useSelector, useDispatch, } from "react-redux";
 import { Container, Content, Card, CardItem, Body, View, Text } from 'native-base';
 import { WebView } from 'react-native-webview';
 import Loader from './utils/Loader';
+import reactotron from 'reactotron-react-native';
 
 function VideosScreen({ navigation }) {
     const cropsVideos = useSelector(state => state.cropsVideos);
@@ -42,6 +43,10 @@ function VideosScreen({ navigation }) {
         setRefreshing(false);
         setLoader(false);
     }, [refreshing]);
+    const _formatImageString = (item) => {
+        const splitItem = item.split('?');
+        return `https://img.youtube.com/vi/${splitItem[1].replace('v=', '')}/default.jpg`
+    }
     return (
         <Container>
             <Header navigation={navigation} />
@@ -68,7 +73,7 @@ function VideosScreen({ navigation }) {
                                                 <Body>
                                                     <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => navigateToWebViewScreen(item)}>
                                                         <View style={{ flex: 1, height: hp('18%') }}>
-                                                            <WebView source={{ uri: item.url }} />
+                                                            <Image style={{ width: wp('30%'), height: hp('18%') }} source={{ uri: _formatImageString(item.url) }} />
                                                         </View>
                                                         <View style={{ width: wp('65%'), justifyContent: 'center' }}>
                                                             <Text numberOfLines={3} style={{

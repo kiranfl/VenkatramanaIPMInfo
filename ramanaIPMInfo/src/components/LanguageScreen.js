@@ -13,15 +13,13 @@ function LanguageScreen({ navigation }) {
     const langSelect = async (type) => {
         if (type === 'English') {
             I18n.locale = 'en';
+            await AsyncStorage.setItem('languageScreen', 'en');
             dispatch(actionCreator.saveLangType({ englishLangSelect: true, spanishLangSelect: false }));
         } else {
             I18n.locale = 'es';
+            await AsyncStorage.setItem('languageScreen', 'es');
             dispatch(actionCreator.saveLangType({ englishLangSelect: false, spanishLangSelect: true }));
         }
-        await AsyncStorage.setItem('languageScreen', 'selected');
-        setTimeout(async () => {
-            reactotron.log('languageScreen', await AsyncStorage.getItem('languageScreen'))
-        }, 500);
     };
     navigateToNextScreen = () => {
         if (langtype.englishLangSelect || langtype.spanishLangSelect) {

@@ -17,6 +17,7 @@ import Discover from './Discover';
 import VideosScreen from './VideosScreen';
 import FeedBackScreen from './FeedBackScreen';
 import StrawberryAndVegetables from './StrawberryAndVegetables';
+import PestNews from './PestNews';
 import I18n from '../i18n/i18n';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -70,6 +71,8 @@ function MyDrawer() {
                 }}
             />
             <Drawer.Screen name={I18n.t('STRAWBERRIES_AND_VEGETABLES')} component={StrawberryAndVegetables}
+            />
+            <Drawer.Screen name={I18n.t('PESTNEWS')} component={PestNews}
             />
         </Drawer.Navigator>
     );

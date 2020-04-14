@@ -10,4 +10,5 @@ export default {
     VIDEOS: 'Videos',
     FEEDBACK: 'Feedback',
     STRAWBERRIES_AND_VEGETABLES: 'Strawberries and Vegetables',
+    PESTNEWS: 'Pest News',
 };
