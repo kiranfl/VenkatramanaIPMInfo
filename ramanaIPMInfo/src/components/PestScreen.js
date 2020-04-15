@@ -15,10 +15,8 @@ function PestScreen({ navigation }) {
 
     const onRefresh = React.useCallback(async () => {
         setRefreshing(true);
-        setLoader(true);
         dispatch(actionCreator.getCropCategories(selectedCrop.id));
         setRefreshing(false);
-        setLoader(false);
     }, [refreshing]);
 
     const detailsScreen = async (item) => {
@@ -45,7 +43,7 @@ function PestScreen({ navigation }) {
                 loader ? (<Loader />) : (null)
             }
             <View style={{ height: hp('72%') }}>
-                <SimpleAnimation animateOnUpdate={true} delay={500} duration={4000} fade staticType='zoom' direction='up'>
+                <SimpleAnimation delay={500} duration={4000} fade staticType='zoom' direction='up'>
                     <FlatList
                         data={getCategories[1]._subCategories}
                         refreshControl={

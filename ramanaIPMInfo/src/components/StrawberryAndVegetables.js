@@ -24,10 +24,8 @@ function StrawberryAndVegetables({ navigation }) {
     }, []);
     const onRefresh = useCallback(async () => {
         setRefreshing(true);
-        setLoader(true);
         await dispatch(actionCreator.getStrawBerryVegNews());
         setRefreshing(false);
-        setLoader(false);
     }, [refreshing]);
     const navigateToWebViewScreen = (item) => {
         setLoader(true);
@@ -45,7 +43,7 @@ function StrawberryAndVegetables({ navigation }) {
                     loader ? (<Loader />) : (null)
                 }
                 <View style={{ height: hp('78%') }}>
-                    <SimpleAnimation movementType='spring' animateOnUpdate={true} delay={500} duration={6000} fade staticType='zoom' direction='left'>
+                    <SimpleAnimation movementType='spring' delay={500} duration={6000} fade staticType='zoom' direction='left'>
                         {
                             strawBerryVegNews === undefined ? (null) : (
                                 <FlatList

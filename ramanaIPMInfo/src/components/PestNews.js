@@ -24,10 +24,8 @@ function PestNews({ navigation }) {
     }, []);
     const onRefresh = useCallback(async () => {
         setRefreshing(true);
-        setLoader(true);
         await dispatch(actionCreator.getPestsNews());
         setRefreshing(false);
-        setLoader(false);
     }, [refreshing]);
     const navigateToWebViewScreen = (item) => {
         setLoader(true);
@@ -45,7 +43,7 @@ function PestNews({ navigation }) {
                     loader ? (<Loader />) : (null)
                 }
                 <View style={{ height: hp('78%') }}>
-                    <SimpleAnimation movementType='spring' animateOnUpdate={true} delay={500} duration={6000} fade staticType='zoom' direction='left'>
+                    <SimpleAnimation movementType='spring' delay={500} duration={6000} fade staticType='zoom' direction='left'>
                         {
                             pestNews === undefined ? (null) : (
                                 <FlatList

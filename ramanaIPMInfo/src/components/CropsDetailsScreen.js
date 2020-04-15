@@ -71,8 +71,18 @@ function MyDrawer() {
                 }}
             />
             <Drawer.Screen name={I18n.t('STRAWBERRIES_AND_VEGETABLES')} component={StrawberryAndVegetables}
+                options={{
+                    drawerIcon: config => <Icon
+                        size={23}
+                        name={'windows'}></Icon>
+                }}
             />
             <Drawer.Screen name={I18n.t('PESTNEWS')} component={PestNews}
+                options={{
+                    drawerIcon: config => <Icon
+                        size={23}
+                        name={'windows'}></Icon>
+                }}
             />
         </Drawer.Navigator>
     );

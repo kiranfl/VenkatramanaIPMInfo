@@ -8,6 +8,7 @@ import { Container, Content, Card, CardItem, Body, View, Text } from 'native-bas
 import { WebView } from 'react-native-webview';
 import Loader from './utils/Loader';
 import reactotron from 'reactotron-react-native';
+import { SimpleAnimation } from 'react-native-simple-animations';
 
 function VideosScreen({ navigation }) {
     const cropsVideos = useSelector(state => state.cropsVideos);
@@ -37,11 +38,9 @@ function VideosScreen({ navigation }) {
     }
     const onRefresh = useCallback(async () => {
         setRefreshing(true);
-        setLoader(true);
         let result = await dispatch(actionCreator.getCropsVideosList());
         setVideos(result);
         setRefreshing(false);
-        setLoader(false);
     }, [refreshing]);
     const _formatImageString = (item) => {
         const splitItem = item.split('?');
@@ -61,63 +60,39 @@ function VideosScreen({ navigation }) {
                 <View style={{ height: hp('77%') }}>
                     {
                         getVideos.payload === undefined ? (null) : (
-                            <FlatList
-                                data={getVideos.payload.value}
-                                refreshControl={
-                                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-                                }
-                                renderItem={({ item, index }) => {
-                                    return (
-                                        <Card>
-                                            <CardItem cardBody>
-                                                <Body>
-                                                    <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => navigateToWebViewScreen(item)}>
-                                                        <View style={{ flex: 1, height: hp('18%') }}>
-                                                            <Image style={{ width: wp('30%'), height: hp('18%') }} source={{ uri: _formatImageString(item.url) }} />
-                                                        </View>
-                                                        <View style={{ width: wp('65%'), justifyContent: 'center' }}>
-                                                            <Text numberOfLines={3} style={{
-                                                                flexShrink: 1,
-                                                                color: '#565656', fontSize: wp('3.4%'), justifyContent: 'center', textAlign: 'center', textAlignVertical: 'center'
-                                                            }}>{item.article}</Text>
-                                                        </View>
-                                                    </TouchableOpacity>
-                                                </Body>
-                                            </CardItem>
-                                        </Card>
-                                    )
-                                }
-                                }
-                            />
+                            <SimpleAnimation movementType='spring' delay={500} duration={6000} fade staticType='zoom' direction='left'>
+                                <FlatList
+                                    data={getVideos.payload.value}
+                                    refreshControl={
+                                        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                                    }
+                                    renderItem={({ item, index }) => {
+                                        return (
+                                            <Card>
+                                                <CardItem cardBody>
+                                                    <Body>
+                                                        <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => navigateToWebViewScreen(item)}>
+                                                            <View style={{ flex: 1, height: hp('18%') }}>
+                                                                <Image style={{ width: wp('30%'), height: hp('18%') }} source={{ uri: _formatImageString(item.url) }} />
+                                                            </View>
+                                                            <View style={{ width: wp('65%'), justifyContent: 'center' }}>
+                                                                <Text numberOfLines={3} style={{
+                                                                    flexShrink: 1,
+                                                                    color: '#565656', fontSize: wp('3.4%'), justifyContent: 'center', textAlign: 'center', textAlignVertical: 'center'
+                                                                }}>{item.article}</Text>
+                                                            </View>
+                                                        </TouchableOpacity>
+                                                    </Body>
+                                                </CardItem>
+                                            </Card>
+                                        )
+                                    }
+                                    }
+                                />
+                            </SimpleAnimation>
                         )
                     }
                 </View>
-                {/* {
-                    getVideos.payload === undefined ? (null) : (
-                        getVideos.payload.value.map((data, index) => {
-                            return (
-                                <Card>
-                                    <CardItem cardBody>
-                                        <Body>
-                                            <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => navigateToWebViewScreen(data)}>
-                                                <View style={{ flex: 1, height: hp('18%') }}>
-                                                    <WebView source={{ uri: data.url }} />
-                                                </View>
-                                                <View style={{ width: wp('65%'), justifyContent: 'center' }}>
-                                                    <Text numberOfLines={3} style={{
-                                                        flexShrink: 1,
-                                                        color: '#565656', fontSize: wp('3.4%'), justifyContent: 'center', textAlign: 'center', textAlignVertical: 'center'
-                                                    }}>{data.article}</Text>
-                                                </View>
-                                            </TouchableOpacity>
-                                        </Body>
-                                    </CardItem>
-                                </Card>
-                            )
-                        })
-                    )
-                } */}
-
             </Content>
         </Container >
     )

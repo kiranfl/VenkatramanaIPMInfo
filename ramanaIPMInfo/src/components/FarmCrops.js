@@ -7,6 +7,7 @@ import { useSelector, useDispatch, } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Carousel from 'react-native-snap-carousel';
 import I18n from '../i18n/i18n';
+import { Container, Content, Card, CardItem, Thumbnail, Button, Left, Body, Right } from 'native-base';
 
 
 function FarmCrops({ navigation }) {
@@ -57,7 +58,7 @@ function FarmCrops({ navigation }) {
                 <Text style={{ color: '#565656', fontSize: wp('5%') }}>{selectedCrop.scientificName}</Text>
                 <Text style={{ color: '#565656', fontSize: wp('3.5%'), marginBottom: hp('0.5%') }}>{selectedCrop.description}</Text>
             </View>
-            <View>
+            {/* <View>
                 <Image
                     style={{ width: wp('100%'), height: hp('34%') }}
                     source={{
@@ -80,8 +81,30 @@ function FarmCrops({ navigation }) {
                         </TouchableOpacity>
                     </View>
                 </View>
-            </View>
+            </View> */}
 
+            <View>
+                <Image style={styles.backgroundImage} source={{ uri: selectedCrop.image }} />
+                <View>
+                    <Button transparent>
+                        <View style={{
+                            justifyContent: 'flex-end',
+                            alignItems: 'flex-end',
+                            borderTopColor: 'rgb(211,211,211)',
+                        }}>
+                            <View>
+                                <View style={{ width: wp('20%'), height: hp('7%'), justifyContent: 'center', opacity: 0.8 }}>
+                                    <Image style={{ position: 'absolute', width: 50, height: 30, top: hp('3%') }} source={require('../../assets/images/strawberry.jpg')} />
+                                    <Text style={{ top: hp('3%'), left: wp('35%'), width: wp('29%'), position: 'absolute', fontWeight: 'bold', fontSize: wp('4.5%'), color: '#ffffff' }}>{I18n.t('MORE_DETAILS')}</Text>
+                                </View>
+                                <TouchableOpacity onPress={() => navigateToNextScreen()} style={{ position: 'absolute', top: hp('2.5%'), left: wp('90%') }}>
+                                    <Icon name="arrow-circle-right" size={30} color='#ffffff' />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </Button>
+                </View>
+            </View>
 
         </SafeAreaView >
     );
@@ -90,6 +113,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#ffffff'
+    },
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover',
+        position: 'absolute',
+        width: '100%',
+        height: '650%',
+        justifyContent: 'center',
+        bottom: hp('1%')
     },
 });
 
