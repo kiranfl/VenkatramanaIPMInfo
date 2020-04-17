@@ -2,7 +2,7 @@ import React, { Component, useEffect } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, AsyncStorage } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { connect, useSelector, useDispatch } from "react-redux";
-import * as actionCreator from "../store/actions/actions";
+import * as actionCreator from "../../store/actions/actions";
 import I18n from 'react-native-i18n';
 import reactotron from 'reactotron-react-native';
 

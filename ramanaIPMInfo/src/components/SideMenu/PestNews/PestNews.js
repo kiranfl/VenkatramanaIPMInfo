@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { StyleSheet, Text, Image, View, SafeAreaView, TouchableOpacity, FlatList, RefreshControl } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import * as actionCreator from "../store/actions/actions";
+import * as actionCreator from "../../../store/actions/actions";
 import { useSelector, useDispatch, } from "react-redux";
 import { SimpleAnimation } from 'react-native-simple-animations';
-import Header from './utils/Header';
+import Header from '../../utils/Header';
 import { Container, Content, Card, CardItem, Body } from 'native-base';
-import Loader from './utils/Loader';
-import I18n from '../i18n/i18n';
+import Loader from '../../utils/Loader';
+import I18n from '../../../i18n/i18n';
 
 function PestNews({ navigation }) {
     const [refreshing, setRefreshing] = useState(false);

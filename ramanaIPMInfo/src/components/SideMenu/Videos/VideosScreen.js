@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Button, TouchableOpacity, ScrollView, StyleSheet, Image, Linking, Alert, FlatList, RefreshControl } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import Header from './utils/Header';
-import * as actionCreator from "../store/actions/actions";
+import Header from '../../utils/Header';
+import * as actionCreator from "../../../store/actions/actions";
 import { useSelector, useDispatch, } from "react-redux";
 import { Container, Content, Card, CardItem, Body, View, Text } from 'native-base';
 import { WebView } from 'react-native-webview';
-import Loader from './utils/Loader';
+import Loader from '../../utils/Loader';
 import reactotron from 'reactotron-react-native';
 import { SimpleAnimation } from 'react-native-simple-animations';
 

@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
-import DetailsScreen from './DetailsScreen';
-import * as actionCreator from "../store/actions/actions";
+import DetailsScreen from '../FarmCrops/DetailsScreen';
+import * as actionCreator from "../../../store/actions/actions";
 import Carousel from 'react-native-snap-carousel';
 import { StyleSheet, Text, Image, View, SafeAreaView, TouchableOpacity, FlatList, RefreshControl, ScrollView } from 'react-native';
 import reactotron from 'reactotron-react-native';

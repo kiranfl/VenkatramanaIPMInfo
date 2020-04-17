@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, Image, View, SafeAreaView, TouchableOpacity } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import * as actionCreator from "../store/actions/actions";
+import * as actionCreator from "../../../store/actions/actions";
 import { useSelector, useDispatch, } from "react-redux";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import DiseasesScreen from './DiseasesScreen';
-import PestScreen from './PestScreen';
-import I18n from '../i18n/i18n';
+import DiseasesScreen from '../FarmCrops/DiseasesScreen';
+import PestScreen from '../FarmCrops/PestScreen';
+import I18n from '../../../i18n/i18n';
 
 const Tab = createBottomTabNavigator();
 
@@ -26,7 +26,7 @@ function MyTabs() {
                 options={{
                     tabBarLabel: I18n.t('DISEASES'),
                     tabBarIcon: () => (
-                        <Image style={{ width: wp('5%'), height: hp('3%'), marginTop: hp('2%') }} source={require('../../assets/images/diseas.png')} />
+                        <Image style={{ width: wp('5%'), height: hp('3%'), marginTop: hp('2%') }} source={require('../../../../assets/images/diseas.png')} />
                     ),
                 }}
             />
@@ -34,7 +34,7 @@ function MyTabs() {
                 options={{
                     tabBarLabel: I18n.t('PESTS'),
                     tabBarIcon: () => (
-                        <Image style={{ width: wp('5%'), height: hp('3%'), marginTop: hp('2%') }} source={require('../../assets/images/pests.png')} />
+                        <Image style={{ width: wp('5%'), height: hp('3%'), marginTop: hp('2%') }} source={require('../../../../assets/images/pests.png')} />
                     ),
                     labelStyle: { fontSize: wp('20%') }
                 }}
@@ -45,11 +45,6 @@ function MyTabs() {
 
 
 function SelectedCropsDetailsScreen() {
-    /*const selectedCrop = useSelector(state => state.selectedcropsList);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(actionCreator.getCropCategories(selectedCrop.id));
-    }, []);*/
     return (
         <View style={{ flex: 1 }}>
             <MyTabs />

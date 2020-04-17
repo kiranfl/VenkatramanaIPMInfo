@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback, Component } from 'react';
 import { StyleSheet, Text, Image, View, SafeAreaView, TouchableOpacity, FlatList, RefreshControl, ScrollView } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import * as actionCreator from "../store/actions/actions";
+import * as actionCreator from "../../../store/actions/actions";
 import { useSelector, useDispatch, } from "react-redux";
 import { SimpleAnimation } from 'react-native-simple-animations';
 import reactotron from 'reactotron-react-native';

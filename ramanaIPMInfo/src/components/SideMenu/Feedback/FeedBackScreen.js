@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { TouchableOpacity, ScrollView, StyleSheet, Image, Linking, Alert, FlatList } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import Header from './utils/Header';
-import * as actionCreator from '../store/actions/actions';
+import Header from '../../utils/Header';
+import * as actionCreator from '../../../store/actions/actions';
 import { useSelector, useDispatch, } from 'react-redux';
 import { Container, Content, Card, CardItem, Body, View, Text, Input, Item, Footer, FooterTab, Button } from 'native-base';
 import { exp } from 'react-native-reanimated';
 import reactotron from 'reactotron-react-native';
 import { SimpleAnimation } from 'react-native-simple-animations';
 import Toast from 'react-native-simple-toast';
-import Loader from './utils/Loader';
+import Loader from '../../utils/Loader';
 
 function FeedBackScreen({ navigation }) {
     const [emojisImages, setEmojisImages] = useState([]);
@@ -17,11 +17,11 @@ function FeedBackScreen({ navigation }) {
     const [comments, setComments] = useState('');
     const [loader, setLoader] = useState(false);
     const images = [
-        { id: 1, title: 'Terrible', selected: false, 'displayImage': require('../../assets/images/surprised.png') },
-        { id: 2, title: 'Bad', selected: false, 'displayImage': require('../../assets/images/worried.png') },
-        { id: 3, title: 'Okay', selected: false, 'displayImage': require('../../assets/images/sad.png') },
-        { id: 4, title: 'Good', selected: false, 'displayImage': require('../../assets/images/ambitious.png') },
-        { id: 5, title: 'Great', selected: false, 'displayImage': require('../../assets/images/smile.png') },
+        { id: 1, title: 'Terrible', selected: false, 'displayImage': require('../../../../assets/images/surprised.png') },
+        { id: 2, title: 'Bad', selected: false, 'displayImage': require('../../../../assets/images/worried.png') },
+        { id: 3, title: 'Okay', selected: false, 'displayImage': require('../../../../assets/images/sad.png') },
+        { id: 4, title: 'Good', selected: false, 'displayImage': require('../../../../assets/images/ambitious.png') },
+        { id: 5, title: 'Great', selected: false, 'displayImage': require('../../../../assets/images/smile.png') },
     ];
     useEffect(() => {
         setEmojisImages([...images]);
@@ -34,19 +34,19 @@ function FeedBackScreen({ navigation }) {
                 getSelectedImage[i].selected = true;
                 switch (getSelectedImage[i].title) {
                     case 'Good':
-                        setSelectImage = require(`../../assets/images/ambitious_big.png`);
+                        setSelectImage = require(`../../../../assets/images/ambitious_big.png`);
                         break;
                     case 'Great':
-                        setSelectImage = require(`../../assets/images/smile_big.png`);
+                        setSelectImage = require(`../../../../assets/images/smile_big.png`);
                         break;
                     case 'Okay':
-                        setSelectImage = require(`../../assets/images/sad_big.png`);
+                        setSelectImage = require(`../../../../assets/images/sad_big.png`);
                         break;
                     case 'Terrible':
-                        setSelectImage = require(`../../assets/images/surprised_big.png`);
+                        setSelectImage = require(`../../../../assets/images/surprised_big.png`);
                         break;
                     case 'Bad':
-                        setSelectImage = require(`../../assets/images/worried_big.png`);
+                        setSelectImage = require(`../../../../assets/images/worried_big.png`);
                         break;
                 }
                 getSelectedImage[i].displayImage = setSelectImage;
@@ -54,19 +54,19 @@ function FeedBackScreen({ navigation }) {
                 getSelectedImage[i].selected = false;
                 switch (getSelectedImage[i].title) {
                     case 'Good':
-                        setSelectImage = require(`../../assets/images/ambitious.png`);
+                        setSelectImage = require(`../../../../assets/images/ambitious.png`);
                         break;
                     case 'Great':
-                        setSelectImage = require(`../../assets/images/smile.png`);
+                        setSelectImage = require(`../../../../assets/images/smile.png`);
                         break;
                     case 'Okay':
-                        setSelectImage = require(`../../assets/images/sad.png`);
+                        setSelectImage = require(`../../../../assets/images/sad.png`);
                         break;
                     case 'Terrible':
-                        setSelectImage = require(`../../assets/images/surprised.png`);
+                        setSelectImage = require(`../../../../assets/images/surprised.png`);
                         break;
                     case 'Bad':
-                        setSelectImage = require(`../../assets/images/worried.png`);
+                        setSelectImage = require(`../../../../assets/images/worried.png`);
                         break;
                 }
                 getSelectedImage[i].displayImage = setSelectImage;

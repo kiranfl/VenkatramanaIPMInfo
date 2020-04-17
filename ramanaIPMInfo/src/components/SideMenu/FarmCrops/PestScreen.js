@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { StyleSheet, Text, Image, View, SafeAreaView, TouchableOpacity, FlatList, RefreshControl } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import * as actionCreator from "../store/actions/actions";
+import * as actionCreator from "../../../store/actions/actions";
 import { useSelector, useDispatch, } from "react-redux";
 import { SimpleAnimation } from 'react-native-simple-animations';
-import Loader from './utils/Loader';
+import Loader from '../../utils/Loader';
 
 function PestScreen({ navigation }) {
     const getCategories = useSelector(state => state.cropCategories);

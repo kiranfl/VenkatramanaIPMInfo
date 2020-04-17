@@ -12,13 +12,12 @@ import {
     DrawerItem,
 } from '@react-navigation/drawer';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import FarmCrops from './FarmCrops';
-import Discover from './Discover';
-import VideosScreen from './VideosScreen';
-import FeedBackScreen from './FeedBackScreen';
-import StrawberryAndVegetables from './StrawberryAndVegetables';
-import PestNews from './PestNews';
-import I18n from '../i18n/i18n';
+import FarmCrops from './FarmCrops/FarmCrops';
+import VideosScreen from '../SideMenu/Videos/VideosScreen';
+import FeedBackScreen from '../SideMenu/Feedback/FeedBackScreen';
+import StrawberryAndVegetables from '../SideMenu/StrawberryAndVegetables/StrawberryAndVegetables';
+import PestNews from '../SideMenu/PestNews/PestNews';
+import I18n from '../../i18n/i18n';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 function CustomDrawerContent(props) {
