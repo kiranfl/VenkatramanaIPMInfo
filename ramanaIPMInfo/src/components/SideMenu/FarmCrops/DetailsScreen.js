@@ -8,7 +8,7 @@ import reactotron from 'reactotron-react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import HTML from 'react-native-render-html';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import WebView from 'react-native-webview';
 
 class DetailsScreen extends Component {
     constructor(props) {
@@ -80,7 +80,8 @@ class DetailsScreen extends Component {
     render() {
         return (
             <SafeAreaView style={styles.container}>
-                <ScrollView>
+
+                <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                     {
                         this.props.cropsDetails === undefined ? (null) :
                             (
@@ -99,12 +100,19 @@ class DetailsScreen extends Component {
                                     <TouchableOpacity style={{ position: 'relative', bottom: hp('7%'), left: wp('85%') }} onPress={() => this._goToImages(this.props.cropsDetails)}>
                                         <Icon name="image" size={30} color="red" />
                                     </TouchableOpacity>
-                                    {this._renderContent(this.props.cropsDetails.content)}
+                                    {/*this._renderContent(this.props.cropsDetails.content)*/}
                                 </View>
 
 
                             )
                     }
+                    <View style={{ flex: 1, }}>
+                        <WebView
+                            originWhitelist={['*']}
+                            source={{ html: this.props.cropsDetails.content }}
+                        />
+                    </View>
+
                 </ScrollView>
 
 
