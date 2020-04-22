@@ -26,7 +26,12 @@ function CustomDrawerContent(props) {
             <DrawerContentScrollView {...props}>
                 <DrawerItem
                     label={I18n.t('IPMINFO')}
-                    style={{ backgroundColor: '#FFC300', fontWeight: 'bold', height: hp('8%') }}
+                    style={{ backgroundColor: '#FFC300', fontWeight: 'bold', height: hp('8%'), width: wp('83%'), position: 'relative', bottom: hp('1.4%'), right: wp('3%') }}
+                    labelStyle={{ color: '#fff', fontSize: wp('5%'), marginLeft: wp('30%'), marginTop: hp('0.5%') }}
+                />
+                <DrawerItem
+                    label={'-'}
+                    style={{ backgroundColor: 'rgb(220,220,220)', height: hp('0.3%'), position: 'relative', top: hp('23%') }}
                     labelStyle={{ color: '#fff', fontSize: wp('5%'), marginLeft: wp('20%') }}
                 />
                 <DrawerItemList {...props}
@@ -47,7 +52,9 @@ function FARMCROPSLABEL() {
 
 function MyDrawer() {
     return (
-        <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
+        <Drawer.Navigator drawerStyle={{
+            width: wp('80%'),
+        }} drawerContent={props => <CustomDrawerContent {...props} />}>
             <Drawer.Screen name={FARMCROPSLABEL()} component={FarmCrops}
                 options={{
                     drawerIcon: config => <Icon
